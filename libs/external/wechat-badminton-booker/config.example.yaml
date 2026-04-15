@@ -1,0 +1,45 @@
+runtime:
+  # 预约入口地址（可先填你提供的 long-url）
+  url: "https://xcx-api.zuduijun.com/api/long-url?code=AzYr2i&app=13"
+
+  # 到点执行时间
+  start_at: "23:00:00"
+
+  # True=无头浏览器；抢位建议 False 便于观察实时状态
+  headless: false
+
+  # 首次运行建议 true，手动登录后按回车继续
+  manual_login: true
+
+  default_timeout_ms: 600
+  click_delay_ms: 20
+  max_attempts_per_combo: 3
+
+booking:
+  # 规则：提前两天预约
+  advance_days: 2
+
+  # 首选
+  target_court: "1号场"
+  target_slot: "18:00-19:00"
+
+  # 候补（按顺序）
+  fallback_courts: ["2号场", "3号场", "4号场", "5号场", "6号场"]
+  fallback_slots: ["19:00-20:00", "17:00-18:00", "20:00-21:00", "16:00-17:00", "15:00-16:00"]
+
+# 可能出现的提交按钮文案（按优先级）
+submit_texts: ["立即预约", "确认预约", "提交", "去支付"]
+
+selectors:
+  # 进入“预约”页面的入口按钮（若无需点击可留空）
+  booking_entry: ""
+
+  # date/court/slot 采用模板占位写法；脚本会 format 填充
+  # 例如："button[data-date='{date}']"
+  date_cell: "[data-date='{date}']"
+
+  # 例如："[data-court='{court}']" 或 XPath: "xpath=//span[contains(., '{court}')]"
+  court_cell: "xpath=//*[contains(normalize-space(.), '{court}')]"
+
+  # 例如："[data-slot='{slot}']"
+  slot_cell: "xpath=//*[contains(normalize-space(.), '{slot}')]"
